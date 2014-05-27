@@ -200,8 +200,10 @@ if __name__ == "__main__":
     b16 = the_bots.FRIEDMAN()
     b17 = the_bots.EATHERLY()
     b18 = the_bots.CHAMPION()
+    b19 = the_bots.RANDOM(p_cooperate=0.8)
+    b20 = the_bots.RANDOM(p_cooperate=0.2)
     bot_list = [b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13,\
-     b14, b15, b16, b17, b18]
+     b14, b15, b16, b17, b18, b19, b20]
 
     t = a.runTournament(bot_list, num_meetings)
     print(t)

@@ -28,8 +28,8 @@ class MoralityCalculator():
         self.calculate_cooperation_stuff()
 
 
-        self.network_jesus_scores = None
-        self.network_moses_scores = None
+        self.eigenjesus_scores = None
+        self.eigenmoses_scores = None
         self.calculate_network_morality(self.cooperation_matrix)
 
     def __str__(self):
@@ -65,11 +65,11 @@ class MoralityCalculator():
             score = self.tourney_res.get_score_by_id(t_id)
             coop_rate = self.cooperation_rates[t_id]
             big_man_score = self.bigger_man_scores[t_id]
-            network_jesus = self.network_jesus_scores[t_id]
-            network_moses = self.network_moses_scores[t_id]
+            eigenjesus = self.eigenjesus_scores[t_id]
+            eigenmoses = self.eigenmoses_scores[t_id]
             row = format_str.format(str(t_id), name,\
              str(coop_rate), str(big_man_score),
-             str(network_jesus), network_moses)
+             str(eigenjesus), eigenmoses)
             output += row+"\n"
         return output
 
@@ -173,18 +173,62 @@ class MoralityCalculator():
         when partnered with j
 
         STORES:
-        - network_jesus_scores: list of recursively defined morality scores
+        - eigenjesus_scores: list of recursively defined morality scores
         (cooperating with cooperaters is worth more), cooperating always helps
-        - network_moses_scores: list of recursively defined morality scores
+        - eigenmoses_scores: list of recursively defined morality scores
         (cooperating with cooperaters is worth more), cooperating with a
         defector actually counts against you
         """
         ## TODO: come up with programmtic way of determining number of iters
-        self.network_jesus_scores =\
+        self.eigenjesus_scores =\
          self.principle_eigenvector(coop_matrix, 100)
         coop_def_matrix = (coop_matrix-0.5)*2
-        self.network_moses_scores =\
+        self.eigenmoses_scores =\
          self.principle_eigenvector(coop_def_matrix, 100)
+
+
+    ## TODO: design and implement more morality metrics
+
+
+    #####
+    # Getter methods
+    #####
+
+    def get_coop_rate_by_id(self, bot_id):
+        return self.cooperation_rates[bot_id]
+
+    def get_good_partner_by_id(self, bot_id):
+        return self.bigger_man_scores[bot_id]
+
+    def get_eigenjesus_by_id(self, bot_id):
+        return self.eigenjesus_scores[bot_id]
+
+    def get_eigenmoses_by_id(self, bot_id):
+        return self.eigenmoses_scores[bot_id]
+
+    def get_bots_sorted_by_coop_rate(self):
+        bot_list = self.tourney_res.botList
+        def get_coop_rate(bot):
+            return self.get_coop_rate_by_id(bot.tournament_id)
+        return sorted(bot_list, key=get_coop_rate, reverse=True)
+
+    def get_bots_sorted_by_good_partner(self):
+        bot_list = self.tourney_res.botList
+        def get_good_partner(bot):
+            return self.get_good_partner_by_id(bot.tournament_id)
+        return sorted(bot_list, key=get_good_partner, reverse=True)
+
+    def get_bots_sorted_by_eigenjesus(self):
+        bot_list = self.tourney_res.botList
+        def get_eigenjesus(bot):
+            return self.get_eigenjesus_by_id(bot.tournament_id)
+        return sorted(bot_list, key=get_eigenjesus, reverse=True)
+
+    def get_bots_sorted_by_eigenmoses(self):
+        bot_list = self.tourney_res.botList
+        def get_eigenmoses(bot):
+            return self.get_eigenmoses_by_id(bot.tournament_id)
+        return sorted(bot_list, key=get_eigenmoses, reverse=True)
 
 
 if __name__ == "__main__":

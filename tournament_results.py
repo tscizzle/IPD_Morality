@@ -99,6 +99,9 @@ class TournamentResults():
         return output
 
 
+    ## TODO: make pretty printing for interactions
+
+
     #####
     # Initialization calculation methods
     #####

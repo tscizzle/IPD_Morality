@@ -9,6 +9,7 @@ class BotPlayer():
     This class should be inherited from by bots who define their
     own getNextMove method. That is how bots have their own strategy.
     self.name is the name of the strategy employed
+    self.description is an explanation of the strategy
     self.tournament_id can be assigned upon beginning each tournament
     """
     def __init__(self, name, description=None):
