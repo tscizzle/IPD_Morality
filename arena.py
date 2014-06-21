@@ -4,13 +4,15 @@
 ##
 ########
 
+
 import random
 
 import bot_player as bp
 import tournament_results as tr
 import morality_calculator as mc
 
-class Arena():
+
+class Arena(object):
     """
     Hosts tournaments of bots
     """
@@ -111,7 +113,7 @@ class Arena():
         return errors
 
     def runTournament(self, botList, numMeetings,
-                    payoffs={'T': 5,'R': 3,'P': 1,'S': 0}, w=0.995):
+                    payoffs={'T':5,'R':3,'P':1,'S':0}, w=0.995):
         """
         Main method, partners each bot with each other bot with
         w probability of ending each turn (length of interactions
@@ -208,7 +210,7 @@ if __name__ == "__main__":
     t = a.runTournament(bot_list, num_meetings)
     print(t)
 
-    m = mc.MoralityCalculator(t)
-    print(m)
+    mc = mc.MoralityCalculator(t)
+    print(mc)
 
     #----------#

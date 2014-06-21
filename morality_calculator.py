@@ -5,10 +5,12 @@
 ##
 ########
 
+
 import copy
 import numpy as np
 
-class MoralityCalculator():
+
+class MoralityCalculator(object):
     """
     Wraps up morality functions and calculations
     """
@@ -30,7 +32,7 @@ class MoralityCalculator():
 
         self.eigenjesus_scores = None
         self.eigenmoses_scores = None
-        self.calculate_network_morality(self.cooperation_matrix)
+        self.calculate_network_morality()
 
     def __str__(self):
         # get the bots in order of their score
@@ -62,7 +64,6 @@ class MoralityCalculator():
         for bot in sorted_bots:
             t_id = bot.tournament_id
             name = self.tourney_res.get_name_by_id(t_id)
-            score = self.tourney_res.get_score_by_id(t_id)
             coop_rate = self.cooperation_rates[t_id]
             big_man_score = self.bigger_man_scores[t_id]
             eigenjesus = self.eigenjesus_scores[t_id]
@@ -96,7 +97,7 @@ class MoralityCalculator():
         bot_list = tr.get_bot_list()
         bot_id_list = [bot.tournament_id for bot in bot_list]
         num_bots = len(bot_list)
-        coop_matrix = [[0 for x in xrange(num_bots)] for y in xrange(num_bots)]
+        coop_matrix = [[0 for _ in xrange(num_bots)] for _ in xrange(num_bots)]
         big_man_scores = {}
         for bot_id in bot_id_list:
             big_man_scores[bot_id] = 0.0
@@ -152,7 +153,7 @@ class MoralityCalculator():
         values of each node. normalize to add to n
         """
         num_vals = len(C)
-        current_vals = np.array([1 for x in xrange(num_vals)])
+        current_vals = np.array([1 for _ in xrange(num_vals)])
         i = 0
         while i < iters:
             current_vals = C.dot(current_vals)
@@ -163,7 +164,7 @@ class MoralityCalculator():
             pev[idx] = (num_vals/total_val)*v
         return pev
 
-    def calculate_network_morality(self, coop_matrix):
+    def calculate_network_morality(self):
         """
         Calculate and store the morality metrics of network jesus and network
         moses for each bot
@@ -181,8 +182,8 @@ class MoralityCalculator():
         """
         ## TODO: come up with programmtic way of determining number of iters
         self.eigenjesus_scores =\
-         self.principle_eigenvector(coop_matrix, 100)
-        coop_def_matrix = (coop_matrix-0.5)*2
+         self.principle_eigenvector(self.cooperation_matrix, 100)
+        coop_def_matrix = (self.cooperation_matrix-0.5)*2
         self.eigenmoses_scores =\
          self.principle_eigenvector(coop_def_matrix, 100)
 

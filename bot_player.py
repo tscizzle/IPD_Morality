@@ -4,7 +4,8 @@
 ##
 ########
 
-class BotPlayer():
+
+class BotPlayer(object):
     """
     This class should be inherited from by bots who define their
     own getNextMove method. That is how bots have their own strategy.

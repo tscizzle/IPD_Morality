@@ -4,9 +4,8 @@
 ##
 ########
 
-import copy
 
-class TournamentResults():
+class TournamentResults(object):
     """
     Calculates and wraps results of tournaments
     """
