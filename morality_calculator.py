@@ -120,7 +120,7 @@ class MoralityCalculator():
                 bot2_rate = bot2_coops/total_turns
                 coop_matrix[bot1_id][bot2_id] = bot1_rate
                 coop_matrix[bot2_id][bot1_id] = bot2_rate
-                # don't include the case where a bot partners with its won clone
+                # don't include the case where a bot partners with its own clone
                 if bot1_id != bot2_id:
                     if bot1_rate >= bot2_rate:
                         big_man_scores[bot1_id] += 1.0
