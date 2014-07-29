@@ -8,7 +8,6 @@
 
 import copy
 import numpy as np
-import sys
 
 
 class MoralityCalculator(object):
