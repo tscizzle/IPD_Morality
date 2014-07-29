@@ -8,6 +8,7 @@
 
 import copy
 import numpy as np
+import sys
 
 
 class MoralityCalculator(object):
@@ -161,7 +162,10 @@ class MoralityCalculator(object):
         total_val = float(sum(current_vals))
         pev = copy.copy(current_vals)
         for idx, v in enumerate(current_vals):
-            pev[idx] = (num_vals/total_val)*v
+            try:
+                pev[idx] = (num_vals/total_val)*v
+            except ZeroDivisionError:
+                pev[idx] = 1
         return pev
 
     def calculate_network_morality(self):
