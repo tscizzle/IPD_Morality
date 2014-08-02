@@ -13,4 +13,4 @@ Fill in the `if __name__ == '__main__':` block at the bottom of `arena.py` (an e
 Some Cool Stuff
 ---------------
 
-Robin Berjob made http://darobin.github.io/ipd-morality/, a cool interface for running tournaments, and it even includes an interesting evolutionary variation.
+Robin Berjon made http://darobin.github.io/ipd-morality/, a cool interface for running tournaments, and it even includes an interesting evolutionary variation.
