@@ -9,3 +9,8 @@ Usage
 -----
 
 Fill in the `if __name__ == '__main__':` block at the bottom of `arena.py` (an example is given in `arena.py` already), navigate in your terminal to the root directory of IPD_Morality, and run `python arena.py`.
+
+Some Cool Stuff
+---------------
+
+Robin Berjob made http://darobin.github.io/ipd-morality/, a cool interface for running tournaments, and it even includes an interesting evolutionary variation.
