@@ -138,10 +138,10 @@ class MoralityCalculator(object):
         self.bigger_man_scores = big_man_scores
         self.cooperation_rates = coop_rates
 
-    def principle_eigenvector(self, C, iters):
+    def principal_eigenvector(self, C, iters):
         """
         Starts with every node at a constant amount of 'worth' and iterates
-        using C to update every node's 'worth' until converging on the principle
+        using C to update every node's 'worth' until converging on the principal
         eigenvector
 
         ARGS:
@@ -149,7 +149,7 @@ class MoralityCalculator(object):
         'votes' between nodes like in PageRank
 
         RETURNS:
-        - pev: pev is the principle eigenvector of C, representing the end
+        - pev: pev is the principal eigenvector of C, representing the end
         values of each node. normalize to add to n
         """
         num_vals = len(C)
@@ -185,10 +185,10 @@ class MoralityCalculator(object):
         """
         ## TODO: come up with programmtic way of determining number of iters
         self.eigenjesus_scores =\
-         self.principle_eigenvector(self.cooperation_matrix, 100)
+         self.principal_eigenvector(self.cooperation_matrix, 100)
         coop_def_matrix = (self.cooperation_matrix-0.5)*2
         self.eigenmoses_scores =\
-         self.principle_eigenvector(coop_def_matrix, 100)
+         self.principal_eigenvector(coop_def_matrix, 100)
 
 
     ## TODO: design and implement more morality metrics
